@@ -10,6 +10,7 @@
     <script src="socket.io/socket.io.js"></script>
     <script>
         var socket = io();
+
         socket.on('connect', function(){
             console.log('Conectado al servidor');
         })
@@ -20,9 +21,16 @@
 
         //Emitir un evento
         socket.emit('mensaje', {nombre: 'Jonathan'});
+        
         //Escuchar un evento
-        socket.on('mensaje', function(payload){
+        socket.on('nuevo-mensaje', function(payload){
             console.log('Escuchando:', payload);
+        });
+        
+        //Escuchar un evento
+        socket.on('active-bands', function(bands){
+            console.clear();
+            console.table(bands);
         });
     </script>
 </body>
